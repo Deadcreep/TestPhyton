@@ -40,7 +40,7 @@ def sqlconnect(nHost='localhost', nBase='Uzhik', nUser='user', nPasw='123'):
     print('start connect')
     try:
 
-        connect = pymssql.connect(server='192.168.1.41', port=1488, user='Eujhm', password='gotmema_$git*Sva', database='Uzhik')
+        connect = pymssql.connect(server='88.206.57.135', port=1488, user='Eujhm', password='gotmema_$git*Sva', database='Uzhik')
         cursor = connect.cursor()
         cursor.execute('SELECT * FROM UPDATES')
         row = cursor.fetchone()
@@ -107,7 +107,7 @@ def moveInDB():
     username = urllib.parse.quote_plus('ua')
     password = urllib.parse.quote_plus('pass')
     # client = pymongo.MongoClient('mongodb://%s:%s@127.0.0.1' % (username, password))
-    client = pymongo.MongoClient('localhost', 27017)
+    client = pymongo.MongoClient('88.206.57.135', 27017)
     db = client.get_database('Catalog')
     db.authenticate(username, password)
 

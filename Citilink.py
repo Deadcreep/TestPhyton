@@ -270,7 +270,6 @@ def getProxies():
     for row in file:
         address = 'https://' + str(row).rstrip()
         list.append({'https': address})
-
     for item in list:
         name = item['https']
         flag = checkProxy(name)
