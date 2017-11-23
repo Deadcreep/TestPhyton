@@ -115,7 +115,7 @@ def moveInDB():
     params = {}
     params['$set'] = {'available': True};
     params['$push'] = {'history': {
-        '$each': [{'price': 74499, 'date': '12.12.12 12:12'}]}}
+        '$each': [{'price': 69999, 'date': '23.11.17 12:12'}]}}
     db.Items.update_one({"name": "Ноутбук MSI GL72M 7REX-1236RU, черный"}, params, upsert=True)
 
 

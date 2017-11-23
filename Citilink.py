@@ -223,8 +223,7 @@ def moveInDB(db, array):
             if(doc['name'] == element['name'] and (doc['available'] != element['avalaible'] or doc['price'] != element['price']) ):
                 sqlconnect(doc['_id'], element['time'])
                 payload = {'id': doc['_id'], 'date': element['time']}
-                r = requests.post("http://88.206.123.192:8080/Change/NotificateAboutChanges", data=payload)
-
+                requests.post("http://88.206.123.192:8080/Change/NotificateAboutChanges", data=payload)
             db.Items.update_one({"name": str(element['name'])}, params, upsert=True)
         print('update count: ' + str(db.Items.count()))
 
