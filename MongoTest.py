@@ -111,12 +111,14 @@ def moveInDB():
     db = client.get_database('Catalog')
     db.authenticate(username, password)
 
-    doc = db.Items.find({"name": "Ноутбук MSI GL72M 7REX-1236RU, черный"})
+    doc = db.Items.find_one({"name": "Ноутбук MSI GL72M 7REX-1236RU, черный"})
     params = {}
     params['$set'] = {'available': True};
     params['$push'] = {'history': {
         '$each': [{'price': 69999, 'date': '23.11.17 12:12'}]}}
-    db.Items.update_one({"name": "Ноутбук MSI GL72M 7REX-1236RU, черный"}, params, upsert=True)
+    #db.Items.update_one({"name": "Ноутбук MSI GL72M 7REX-1236RU, черный"}, params, upsert=True)
+
+    print(doc['history'][-1]['price'])
 
 
 
@@ -124,17 +126,16 @@ def moveInDB():
 if __name__ == '__main__':
     import pymongo
     import urllib.parse
-    import pyodbc
     import  datetime
     import pymssql
     import requests
 
     #dict = getProxies
-    #moveInDB()
+    moveInDB()
 
-    payload = {'id': '5a149b4129c52c64423703c8', 'date': '12.12.12 12:12'}
-    r = requests.post("http://88.206.123.192:8080/Change/NotificateAboutChanges", data=payload)
-    print(r.status_code)
-    print(r.text)
+    #payload = {'id': '5a149b4129c52c64423703c8', 'date': '12.12.12 12:12'}
+    #r = requests.post("http://88.206.123.192:8080/Change/NotificateAboutChanges", data=payload)
+    #print(r.status_code)
+    #print(r.text)
 
 

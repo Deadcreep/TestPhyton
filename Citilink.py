@@ -127,7 +127,7 @@ def collectDataInCategory(link, useragent, proxies):
             try:
                 print('page: ' + str(page))
                 ranProxy = random.choice(list(proxies))
-                dict = {'http': ranProxy}
+                dict = {'https': ranProxy}
                 print(ranProxy)
                 # noinspection PyArgumentList
                 processPage(link, useragent, page, dict)
@@ -219,8 +219,8 @@ def moveInDB(db, array):
                 'link': str(element['link'])};
             params['$push'] = {'history': {
                 '$each': [{'price': element['price'], 'date': str(element['time'])}]}}
-            doc = db.Items.findOne({'name': element['name']})
-            if(doc['name'] == element['name'] and (doc['available'] != element['avalaible'] or doc['price'] != element['price']) ):
+            doc = db.Items.find_one({'name': element['name']})
+            if(doc['name'] == element['name'] and (doc['available'] != element['avalaible'] or doc['history'][-1]['price'] != element['price']) ):
                 sqlconnect(doc['_id'], element['time'])
                 payload = {'id': doc['_id'], 'date': element['time']}
                 requests.post("http://88.206.123.192:8080/Change/NotificateAboutChanges", data=payload)
@@ -229,11 +229,7 @@ def moveInDB(db, array):
 
 
 def sqlconnect(id, date):
-    import pyodbc
     import pymssql
-    print('start connect')
-    import pymssql
-    import datetime
     print('start connect')
     try:
         connect = pymssql.connect(server='192.168.1.41', port=1488, user='Eujhm', password='gotmema_$git*Sva',
@@ -262,7 +258,6 @@ def checkProxy(proxy):
         print('ERROR:', detail)
         flag = False
     finally:
-        time.sleep(0.02)
         session.close()
         return flag
 
@@ -278,11 +273,11 @@ def getProxies():
 
     for item in list:
         name = item['https']
-        #flag = checkProxy(name)
-        #print(str(flag) + ' wait...' + str(count))
+        flag = checkProxy(name)
+        print(str(flag) + ' wait...' + str(count))
         count += 1
-        #if flag is True:
-        dict[name] = item
+        if flag is True:
+            dict[name] = item
     return dict
 
 
