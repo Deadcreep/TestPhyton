@@ -1,4 +1,4 @@
-# -*- coding: utf8 -*-
+
 
 def ChangeHistory():
     import pymongo
@@ -106,7 +106,6 @@ def moveInDB():
     import urllib.parse
     username = urllib.parse.quote_plus('ua')
     password = urllib.parse.quote_plus('pass')
-    # client = pymongo.MongoClient('mongodb://%s:%s@127.0.0.1' % (username, password))
     client = pymongo.MongoClient('88.206.57.135', 27017)
     db = client.get_database('Catalog')
     db.authenticate(username, password)
