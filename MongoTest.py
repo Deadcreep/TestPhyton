@@ -112,13 +112,29 @@ def moveInDB():
     db.authenticate(username, password)
 
     doc = db.Items.find_one({"name": "Ноутбук MSI GL72M 7REX-1236RU, черный"})
+    print(doc['available'])
+
     params = {}
     params['$set'] = {'available': True};
     params['$push'] = {'history': {
-        '$each': [{'price': 69999, 'date': '23.11.17 12:12'}]}}
+        '$each': [{'price': 74000, 'date': '23.11.17 12:12'}]}}
     #db.Items.update_one({"name": "Ноутбук MSI GL72M 7REX-1236RU, черный"}, params, upsert=True)
+    doc = db.Items.find_one({"name": "Ноутбук SAMSUNG NP355E5X-A01, черный"})
+    print(doc['available'])
 
-    print(doc['history'][-1]['price'])
+    params = {}
+    params['$set'] = {'available': True};
+    #db.Items.update_one({"name": "Ноутбук SAMSUNG NP355E5X-A01, черный"}, params, upsert=True)
+
+    print(doc['available'])
+    doc = db.Items.find_one({"name": "Нетбук ASUS Eee PC 1015BX-WHI180S, белый "})
+
+    params = {}
+    params['$push'] = {'history': {
+        '$each': [{'price': 9999, 'date': '23.11.17 12:12'}]}}
+    #db.Items.update_one({"name": "Нетбук ASUS Eee PC 1015BX-WHI180S, белый "}, params, upsert=True)
+
+
 
 
 
