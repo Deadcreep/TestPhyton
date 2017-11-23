@@ -1,5 +1,3 @@
-
-
 def ChangeHistory():
     import pymongo
     import urllib.parse
@@ -32,7 +30,6 @@ def ChangeHistory():
         index += 1
     cursor.close()
 
-
 def sqlconnect(nHost='localhost', nBase='Uzhik', nUser='user', nPasw='123'):
     import pyodbc
     import pymssql
@@ -62,7 +59,6 @@ def sqlconnect(nHost='localhost', nBase='Uzhik', nUser='user', nPasw='123'):
         print(e)
         return ''
 
-
 def checkProxy(proxy):
     import time
     flag = True
@@ -79,7 +75,6 @@ def checkProxy(proxy):
         time.sleep(0.00001)
         session.close()
         return flag
-
 
 def getProxies():
     file = open('httpsproxy.txt', 'r')
@@ -99,11 +94,9 @@ def getProxies():
     return dict
 
 
-
-
-
 def moveInDB():
     import urllib.parse
+    import pymongo
     username = urllib.parse.quote_plus('ua')
     password = urllib.parse.quote_plus('pass')
     client = pymongo.MongoClient('88.206.57.135', 27017)
@@ -132,10 +125,6 @@ def moveInDB():
     params['$push'] = {'history': {
         '$each': [{'price': 9999, 'date': '23.11.17 12:12'}]}}
     #db.Items.update_one({"name": "Нетбук ASUS Eee PC 1015BX-WHI180S, белый "}, params, upsert=True)
-
-
-
-
 
 
 if __name__ == '__main__':
